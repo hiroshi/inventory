@@ -1,0 +1,2 @@
+log/*.log
+db/development_structure.sql

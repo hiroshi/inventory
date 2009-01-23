@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en-US' xml:lang='en-US' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <%= render :partial => "/shared/head" %>
+  </head>
+  <body>
+    <div class="container" style="margin:0px 1em">
+      <%= render :partial => "/shared/header" %>
+
+      <hr/>
+
+      <ul class="h_menu">
+        <li><%= link_to t("activerecord.models.computer_asset"), computer_assets_path %></li>
+        <li><%= link_to t("activerecord.models.member"), members_path %></li>
+      </ul>
+
+      <hr/>
+
+      <%= yield %>
+
+    </div>
+  </body>
+</html>

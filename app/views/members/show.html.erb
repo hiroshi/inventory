@@ -1,0 +1,28 @@
+<%= link_to t("members.index"), computer_assets_path %>
+
+<% form_for @user, :url => members_path, :builder => TableFormBuilder do |form| %>
+<fieldset>
+  <legend><%= t("member") %></legend>
+  <%= error_messages_for form.object_name %>
+  <table>
+    <% form.tr :login do |method| %>
+       <%= form.text_field method %>
+    <% end %>
+    <% form.tr :email do |method| %>
+       <%= form.text_field method %>
+    <% end %>
+    <% form.tr :password do |method| %>
+       <%= form.password_field method %>
+    <% end %>
+    <% form.tr :password_confirmation do |method| %>
+       <%= form.password_field method %>
+    <% end %>
+<!--
+    <% form.tr :name do |method| %>
+       <%= form.text_field method %>
+    <% end %>
+-->
+  </table>
+</fieldset>
+  <%= submit_tag t("create") %>
+<% end %>

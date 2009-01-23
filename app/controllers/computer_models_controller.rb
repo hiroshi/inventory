@@ -1,0 +1,2 @@
+class ComputerModelsController < ApplicationController
+end

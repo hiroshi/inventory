@@ -1,0 +1,7 @@
+      <div id="header">
+      <% if current_user %>
+        login: <%= current_user.login %>
+      <% else %>
+        <%= link_to "login", login_path %> | <%= link_to "sign up", signup_path %>
+      <% end %>
+      </div>

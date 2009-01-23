@@ -1,0 +1,63 @@
+<%= link_to t("computer_assets.index"), computer_assets_path %>
+
+<% form_for @computer_asset, :builder => TableFormBuilder do |form| %>
+<div class="span-12">
+<fieldset>
+  <legend><%= t("activerecord.models.computer_asset") %></legend>
+  <table>
+    <% form.tr :developer_name do |method| %>
+       <%= text_field_with_auto_complete form.object_name, method %>
+    <% end %>
+    <% form.tr :product_name do |method| %>
+      <%= form.text_field method %>
+    <% end %>
+    <% form.tr :model_number do |method| %>
+      <%= form.text_field method %>
+    <% end %>
+  </table>
+</fieldset>
+</div>
+<div class="span-12 last">
+<fieldset>
+  <legend><%= t("activerecord.models.utilization") %></legend>
+  <table>
+  <% fields_for @computer_asset.utilization, :builder => TableFormBuilder do |utilization_fields| %>
+    <% utilization_fields.tr :user_id do |method| %>
+      <%= utilization_fields.collection_select method, current_user.group.users, :id, :login, :include_blank => true %>
+    <% end %>
+    <% utilization_fields.tr :host_name do |method| %>
+      <%= utilization_fields.text_field method %>
+    <% end %>
+    <% utilization_fields.tr :started_on do |method| %>
+      <%= utilization_fields.text_field method %>
+      <%= link_to_function t("today"), "$('utilization_started_on').value = '#{Date.today}'" %>
+    <% end %>
+  <% end %>
+  </table>
+</fieldset>
+</div>
+<div class="clear" />
+  <%= submit_tag t(@computer_asset.new_record? ? "create" : "update") %>
+<% end %>
+
+<hr/>
+
+<h3>利用履歴</h3>
+<% if @utilizations %>
+<table>
+  <tr>
+    <th>revision</th>
+    <th><%= h t("activerecord.attributes.utilization.user_id") %></th>
+    <th><%= h t("activerecord.attributes.utilization.host_name") %></th>
+    <th><%= h t("activerecord.attributes.utilization.started_on") %></th>
+  </tr>
+  <% @utilizations.each do |utilization| %>
+    <tr class='<%= cycle "", "even" %>'>
+      <td><%= utilization.revision %></td>
+      <td><%= h utilization.user.try(:login) %></td>
+      <td><%= h utilization.host_name %></td>
+      <td><%= h utilization.started_on %></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>

@@ -1,0 +1,6 @@
+/* horizontal menu */
+ul.h_menu li {
+  display: inline;
+  border-left: solid 1px gray;
+  padding: 0px 1em;
+}
