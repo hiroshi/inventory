@@ -6,7 +6,13 @@ class ComputerAssetsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_computer_asset_developer_name]
 
   def index
-    @computer_assets = current_group.computer_assets.find(:all, :include => :developer, :order => "id ASC")
+    # TODO: refactor and generalize as find 
+    options = {:include => :developer, :order => "computer_assets.id ASC"}
+    if user_id = params[:user_id]
+      options[:joins] = "LEFT JOIN utilizations u ON u.computer_asset_id = computer_assets.id"
+      options[:conditions] = ["u.user_id = ?", user_id]
+    end
+    @computer_assets = current_group.computer_assets.find(:all, options)
   end
 
   def new
