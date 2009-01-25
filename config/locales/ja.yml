@@ -14,6 +14,9 @@ ja:
   members:
     index: 利用者
     new: 利用者登録
+  utilizations:
+    children: 付属機材
+    revisions: 利用履歴
 
   activerecord:
     models:
@@ -34,8 +37,9 @@ ja:
         model_number: "型番"
       utilization:
         user_id: "利用者"
-        host_name: "ホスト名"
+        description: "備考"
         started_on: "利用開始日"
+        parent_id: "接続先"
 
     errors:
       template:

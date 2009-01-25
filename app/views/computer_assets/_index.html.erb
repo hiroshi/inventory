@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th><%= h t("activerecord.attributes.computer_asset.product_name") %></th>
+    <th><%= h t("activerecord.attributes.computer_asset.developer_name") %></th>
+    <th><%= h t("activerecord.attributes.computer_asset.model_number") %></th>
+    <th><%= h t("activerecord.attributes.utilization.user_id") %></th>
+  </tr>
+  <% computer_assets.each do |computer_asset| %>
+    <tr class='<%= cycle "", "even" %>'>
+      <td><%= link_to "##{computer_asset.id}", computer_asset_path(computer_asset) %></td>
+      <td><%= h(computer_asset.product_name) %></td>
+      <td><%= h computer_asset.developer_name %></td>
+      <td><%= h computer_asset.model_number %></td>
+      <td><%= h computer_asset.utilization.user.try(:login) %></td>
+    </tr>
+  <% end %>
+</table>

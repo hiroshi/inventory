@@ -53,4 +53,7 @@ class User < ActiveRecord::Base
   def set_group
     self.create_group if self.group_id.nil?
   end
+
+  # :utilizations
+  has_many :utilizations
 end

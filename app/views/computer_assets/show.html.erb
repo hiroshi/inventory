@@ -25,12 +25,15 @@
     <% utilization_fields.tr :user_id do |method| %>
       <%= utilization_fields.collection_select method, current_user.group.users, :id, :login, :include_blank => true %>
     <% end %>
-    <% utilization_fields.tr :host_name do |method| %>
-      <%= utilization_fields.text_field method %>
-    <% end %>
     <% utilization_fields.tr :started_on do |method| %>
       <%= utilization_fields.text_field method %>
       <%= link_to_function t("today"), "$('utilization_started_on').value = '#{Date.today}'" %>
+    <% end %>
+    <% utilization_fields.tr :parent_id do |method| %>
+      <%= utilization_fields.collection_select method, current_group.utilizations.include_asset.map{|u| [u.id, u.computer_asset.product_name]}, :first, :last, :include_blank => true  %>
+    <% end %>
+    <% utilization_fields.tr :description do |method| %>
+      <%= utilization_fields.text_field method %>
     <% end %>
   <% end %>
   </table>
@@ -42,21 +45,24 @@
 
 <hr/>
 
-<h3>利用履歴</h3>
+<h3><%= t("utilizations.children") %></h3>
+<%= render :partial => "index", :locals => {:computer_assets => @computer_asset.utilization.children.map(&:computer_asset)} %>
+
+<h3><%= t("utilizations.revisions") %></h3>
 <% if @utilizations %>
 <table>
   <tr>
     <th>revision</th>
     <th><%= h t("activerecord.attributes.utilization.user_id") %></th>
-    <th><%= h t("activerecord.attributes.utilization.host_name") %></th>
     <th><%= h t("activerecord.attributes.utilization.started_on") %></th>
+    <th><%= h t("activerecord.attributes.utilization.description") %></th>
   </tr>
   <% @utilizations.each do |utilization| %>
     <tr class='<%= cycle "", "even" %>'>
       <td><%= utilization.revision %></td>
       <td><%= h utilization.user.try(:login) %></td>
-      <td><%= h utilization.host_name %></td>
       <td><%= h utilization.started_on %></td>
+      <td><%= h utilization.description %></td>
     </tr>
   <% end %>
 </table>

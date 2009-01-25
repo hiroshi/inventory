@@ -34,18 +34,18 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.references :developer
       t.string :model_number, :null => false
       t.string :product_name, :null => false
-
       t.references :group, :null => false
       t.string :asset_number
-
       t.timestamps
     end
 
     create_table :utilizations, :revision => true do |t|
       t.references :computer_asset, :null => false
       t.references :user
-      t.string :host_name
+      t.references :group, :null => false
+      t.text :description
       t.date :started_on
+      t.integer :parent_id, :references => :utilizations
       t.timestamps
     end
     # TODO: extend create_table so that reviisons table is automaticaly created
