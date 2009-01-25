@@ -1,7 +1,10 @@
 ja:
   create: 登録
   update: 更新
+  delete: 削除
+
   today: 今日
+  no_user: 利用者なし
 
   sessions:
     new: ログイン
@@ -10,6 +13,7 @@ ja:
   computer_assets:
     index: 機材一覧
     new: 機材登録
+    create: 機材登録
     show: 機材
   members:
     index: 利用者
@@ -23,7 +27,7 @@ ja:
       user: "利用者"
       member: "利用者"
       computer_asset: "機材"
-      utilization: "利用"
+      utilization: "利用情報"
     attributes:
       user:
         login: "ログイン名"
@@ -35,12 +39,12 @@ ja:
         developer_name: "メーカー"
         product_name: "製品名"
         model_number: "型番"
+        utilization: "利用情報"
       utilization:
         user_id: "利用者"
         description: "備考"
-        started_on: "利用開始日"
+        started_on: "開始日"
         parent_id: "接続先"
-
     errors:
       template:
         header: "" # {{count}} errors prohibited this user from being saved
@@ -53,4 +57,8 @@ ja:
           attributes:
             group_id:
               blank: "を指定してください"
+        computer_asset:
+          attributes:
+            utilization:
+              invalid: "が正しくありません"
 

@@ -1,7 +1,7 @@
 class ComputerAssetsController < ApplicationController
   before_filter :login_required
   before_filter :new_computer_asset, :only => [:new, :create]
-  before_filter :set_computer_asset, :only => [:show, :update]
+  before_filter :set_computer_asset, :only => [:show, :update, :destroy]
   # FIXME
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_computer_asset_developer_name]
 
@@ -20,21 +20,33 @@ class ComputerAssetsController < ApplicationController
   end
 
   def create
-    @computer_asset.save!
-    redirect_to computer_assets_path
+    if @computer_asset.valid? && @utilization.valid?
+      @computer_asset.save!
+      redirect_to computer_assets_path
+    else
+      render :action => "show"
+    end
   end
 
   def show
 #    @utilizations = Utilization.find(:all, :from => "utilization_revisions", :conditions => ["id = ?", @computer_asset.utilization], :order => "revision DESC")
-    @utilizations = @computer_asset.utilization.revisions
+    @utilizations = @utilization.revisions
+  end
+  
+  def update
+    if @computer_asset.valid? && @utilization.valid?
+      ActiveRecord::Base.transaction do
+        @computer_asset.update_attributes!(params[:computer_asset])
+        @utilization.update_attributes!(params[:utilization])
+      end
+      redirect_to computer_assets_path
+    else
+      render :action => "show"
+    end
   end
 
-  def update
-    ActiveRecord::Base.transaction do
-      @computer_asset.update_attributes!(params[:computer_asset])
-      @computer_asset.utilization.update_attributes!(params[:utilization])
-    end
-
+  def destroy
+    @computer_asset.destroy
     redirect_to computer_assets_path
   end
 
@@ -55,11 +67,12 @@ class ComputerAssetsController < ApplicationController
 
   def new_computer_asset
     @computer_asset = current_group.computer_assets.build(params[:computer_asset])
-    # @computer_asset.group_id = current_user.group_id
-    @computer_asset.build_utilization(params[:utilization])
+    @computer_asset.utilization = @utilization = current_group.utilizations.build(params[:utilization])
+    @utilization.computer_asset = @computer_asset
   end
 
   def set_computer_asset
     @computer_asset = current_user.group.computer_assets.find_by_id(params[:id]) or raise NotFoundError
+    @utilization = @computer_asset.utilization || @computer_asset.build_utilization
   end
 end

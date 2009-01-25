@@ -32,7 +32,7 @@ class CreateInitialSchema < ActiveRecord::Migration
 
     create_table :computer_assets do |t|
       t.references :developer
-      t.string :model_number, :null => false
+      t.string :model_number
       t.string :product_name, :null => false
       t.references :group, :null => false
       t.string :asset_number

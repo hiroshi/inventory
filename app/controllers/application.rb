@@ -2,10 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  class BadRequestError < Exception; end
-  class ForbiddenError < Exception; end
-  class NotFoundError < Exception; end
-
+  include HttpError
   include AuthenticatedSystem
 
   helper :all # include all helpers, all the time

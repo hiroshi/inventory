@@ -3,6 +3,11 @@ class Utilization < ActiveRecord::Base
   belongs_to :computer_asset
   belongs_to :user
 
+  belongs_to :group
+  before_validation do |utilization|
+    utilization.group_id ||= utilization.computer_asset.try(:group_id)
+  end
+
   include Revision::Model
 
   named_scope :include_asset, :include => :computer_asset
