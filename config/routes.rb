@@ -12,8 +12,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :computer_assets
   map.user_assets "/user/:user_id/computer_assets", :controller => "computer_assets", :action => "index"
 
-  map.resources :computer_models
-
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
