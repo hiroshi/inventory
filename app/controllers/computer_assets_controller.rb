@@ -30,14 +30,21 @@ class ComputerAssetsController < ApplicationController
 
   def show
 #    @utilizations = Utilization.find(:all, :from => "utilization_revisions", :conditions => ["id = ?", @computer_asset.utilization], :order => "revision DESC")
-    @utilizations = @utilization.revisions
+#    @utilizations = @utilization.revisions
+    @utilizations = @computer_asset.utilizations
   end
   
   def update
     if @computer_asset.valid? && @utilization.valid?
       ActiveRecord::Base.transaction do
+        # replace utilization if user is altered
+        if Utilization.new(params[:utilization]).user_id != @computer_asset.utilization.user_id
+          @computer_asset.utilization = current_group.utilizations.build(params[:utilization])
+          @utilization.computer_asset = @computer_asset
+        else
+          @utilization.update_attributes!(params[:utilization])
+        end
         @computer_asset.update_attributes!(params[:computer_asset])
-        @utilization.update_attributes!(params[:utilization])
       end
       redirect_to computer_assets_path
     else
