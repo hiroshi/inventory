@@ -67,7 +67,7 @@
   <% @utilizations.each do |utilization| %>
     <tr class='<%= cycle "", "even" %>'>
 <!--      <td><%#= utilization.revision %></td> -->
-      <td><%= h utilization.user.try(:login) %></td>
+      <td><%= link_to h(utilization.user.try(:login)), user_assets_path(utilization.user) %></td>
       <td><%= h utilization.started_on %></td>
       <td><%= h utilization.description %></td>
     </tr>

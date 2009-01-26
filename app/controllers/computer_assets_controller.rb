@@ -9,8 +9,8 @@ class ComputerAssetsController < ApplicationController
     # TODO: refactor and generalize as find 
     options = {:include => :developer, :order => "computer_assets.id ASC"}
     if user_id = params[:user_id]
-      options[:joins] = "LEFT JOIN utilizations u ON u.computer_asset_id = computer_assets.id"
-      options[:conditions] = ["u.user_id = ?", user_id]
+      # TODO: to avoid sub query it would good having current flag on utilizations
+      options[:conditions] = ["(SELECT user_id FROM utilizations WHERE computer_asset_id = computer_assets.id ORDER BY started_on DESC LIMIT 1) = ?", user_id]
     end
     @computer_assets = current_group.computer_assets.find(:all, options)
   end

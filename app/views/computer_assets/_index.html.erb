@@ -12,7 +12,7 @@
       <td><%= h(computer_asset.product_name) %></td>
       <td><%= h computer_asset.developer_name %></td>
       <td><%= h computer_asset.model_number %></td>
-      <td><%= h computer_asset.try(:utilization, :user, :login) %></td>
+      <td><%= link_to_unless computer_asset.utilization.user.blank?, h(computer_asset.utilization.user.try(:login)), user_assets_path(computer_asset.utilization.user) %></td>
     </tr>
   <% end %>
 </table>
