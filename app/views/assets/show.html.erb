@@ -1,10 +1,10 @@
 <%= render :partial => "menu" %>
 
-<% form_for @computer_asset, :builder => TableFormBuilder do |form| %>
+<% form_for @asset, :builder => TableFormBuilder do |form| %>
 <div class="span-12">
 <fieldset>
-  <legend><%= t("activerecord.models.computer_asset") %></legend>
-  <%= error_messages_for :computer_asset %>
+  <legend><%= t("activerecord.models.asset") %></legend>
+  <%= error_messages_for :asset %>
   <table>
     <% form.tr :developer_name do |method| %>
        <%= text_field_with_auto_complete form.object_name, method %>
@@ -32,7 +32,7 @@
       <%= link_to_function t("today"), "$('utilization_started_on').value = '#{Date.today}'" %>
     <% end %>
     <% utilization_fields.tr :parent_id do |method| %>
-      <%= utilization_fields.collection_select method, current_group.utilizations.include_asset.map{|u| [u.id, u.computer_asset.product_name]}, :first, :last, :include_blank => true  %>
+      <%= utilization_fields.collection_select method, current_group.utilizations.include_asset.map{|u| [u.id, u.asset.product_name]}, :first, :last, :include_blank => true  %>
     <% end %>
     <% utilization_fields.tr :description do |method| %>
       <%= utilization_fields.text_field method %>
@@ -43,18 +43,18 @@
 </div>
 <div class="clear" />
 <div>
-<% unless @computer_asset.new_record? %>
-  <span style="float:right"><%= link_to t("delete"), computer_asset_path(@computer_asset), :method => "delete" %></span>
+<% unless @asset.new_record? %>
+  <span style="float:right"><%= link_to t("delete"), asset_path(@asset), :method => "delete" %></span>
 <% end %>
-  <div style="text-align:center"><%= submit_tag t(@computer_asset.new_record? ? "create" : "update") %></div>
+  <div style="text-align:center"><%= submit_tag t(@asset.new_record? ? "create" : "update") %></div>
 </div>
 <% end %>
 
-<% unless @computer_asset.new_record? %>
+<% unless @asset.new_record? %>
 <hr/>
 
 <h3><%= t("utilizations.children") %></h3>
-<%= render :partial => "index", :locals => {:computer_assets => @utilization.children.map(&:computer_asset)} %>
+<%= render :partial => "index", :locals => {:assets => @utilization.children.map(&:asset)} %>
 
 <h3><%= t("utilizations.revisions") %></h3>
 <table>

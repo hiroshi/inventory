@@ -26,11 +26,7 @@ class CreateInitialSchema < ActiveRecord::Migration
     end
     add_index :developers, :name, :unique => true
 
-    create_table :computer_models do |t|
-      t.timestamps
-    end
-
-    create_table :computer_assets do |t|
+    create_table :assets do |t|
       t.references :developer
       t.string :model_number
       t.string :product_name, :null => false
@@ -40,7 +36,7 @@ class CreateInitialSchema < ActiveRecord::Migration
     end
 
     create_table :utilizations, :revision => true do |t|
-      t.references :computer_asset, :null => false
+      t.references :asset, :null => false
       t.references :user
       t.references :group, :null => false
       t.text :description
@@ -52,7 +48,7 @@ class CreateInitialSchema < ActiveRecord::Migration
 #     create_table :utilization_revisions, :primary_key => false do |t|
 #       t.integer :id, :null => false
 #       t.integer :revision, :null => false
-#       t.references :computer_asset, :user, :null => false
+#       t.references :asset, :user, :null => false
 #       t.string :host_name
 #       t.timestamps
 #     end
@@ -61,8 +57,7 @@ class CreateInitialSchema < ActiveRecord::Migration
 
   def self.down
     drop_table :utilizations
-    drop_table :computer_assets
-    drop_table :computer_models
+    drop_table :assets
     drop_table :developers
     drop_table :users
     drop_table :groups

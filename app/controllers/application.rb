@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   def index
-    redirect_to computer_assets_path
+    redirect_to assets_path
   end
 
   def current_group

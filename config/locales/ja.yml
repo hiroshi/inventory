@@ -10,7 +10,7 @@ ja:
     new: ログイン
   users:
     new: ユーザー登録
-  computer_assets:
+  assets:
     index: 機材一覧
     new: 機材登録
     create: 機材登録
@@ -26,7 +26,7 @@ ja:
     models:
       user: "利用者"
       member: "利用者"
-      computer_asset: "機材"
+      asset: "機材"
       utilization: "利用情報"
     attributes:
       user:
@@ -35,7 +35,7 @@ ja:
         name: "名前"
         password: "パスワード"
         password_confirmation: "パスワード確認"
-      computer_asset:
+      asset:
         developer_name: "メーカー"
         product_name: "製品名"
         model_number: "型番"
@@ -57,7 +57,7 @@ ja:
           attributes:
             group_id:
               blank: "を指定してください"
-        computer_asset:
+        asset:
           attributes:
             utilization:
               invalid: "が正しくありません"

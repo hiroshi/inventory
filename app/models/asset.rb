@@ -1,4 +1,4 @@
-class ComputerAsset < ActiveRecord::Base
+class Asset < ActiveRecord::Base
   # developer
   belongs_to :developer
   validates_presence_of :developer_name
