@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: kizai_development
+  database: inventory_development
   pool: 5
   username: postgres
   password:
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: kizai_test
+  database: inventory_test
   pool: 5
   username: postgres
   password:
@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: kizai_production
+  database: inventory_production
   pool: 5
   username: postgres
   password:
