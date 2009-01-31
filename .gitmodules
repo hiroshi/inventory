@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/script-refactor"]
+	path = vendor/plugins/script-refactor
+	url = git://github.com/hiroshi/script-refactor.git
