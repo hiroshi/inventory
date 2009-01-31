@@ -1,5 +1,21 @@
-To build the guides:
 
-* Install source-highlighter (http://www.gnu.org/software/src-highlite/source-highlight.html)
-* Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
-* Run `rake guides` from the railties directory
+= Plugins
+This application depends on many plugins.
+To update plugins:
+script/plugin install --force {URL}
+
+== home brewed
+git://github.com/hiroshi/script-refactor.git
+ Provides script/refactor.
+
+== redhillonrails_core and dependants
+git://github.com/harukizaemon/redhillonrails_core.git
+git://github.com/harukizaemon/foreign_key_migrations.git
+git://github.com/harukizaemon/schema_validations.git
+
+== rails spin-offs
+git://github.com/rails/acts_as_tree.git
+git://github.com/rails/auto_complete.git
+
+== RESTful Authentication
+git://github.com/technoweenie/restful-authentication.git
