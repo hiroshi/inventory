@@ -1,21 +1,8 @@
 
-= Plugins
-This application depends on many plugins.
-To update plugins:
-script/plugin install --force {URL}
+= How to get started
+== Get home brewed plugins
+Some plugins, home brewed ones, are managed with 'git submodule' command.
+If you get this application from a git repository, before starting:
 
-== home brewed
-git://github.com/hiroshi/script-refactor.git
- Provides script/refactor.
-
-== redhillonrails_core and dependants
-git://github.com/harukizaemon/redhillonrails_core.git
-git://github.com/harukizaemon/foreign_key_migrations.git
-git://github.com/harukizaemon/schema_validations.git
-
-== rails spin-offs
-git://github.com/rails/acts_as_tree.git
-git://github.com/rails/auto_complete.git
-
-== RESTful Authentication
-git://github.com/technoweenie/restful-authentication.git
+ git submodule init
+ git submodule update

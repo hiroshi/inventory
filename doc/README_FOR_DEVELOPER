@@ -1,0 +1,25 @@
+Before rading this, read README_FOR_APP first.
+
+= Maintenance
+This application depends on many plugins. 
+Those plugins other than home brewed ones, managed with 'git submodule', may be need update by re-installing.
+To update plugins:
+
+ script/plugin install --force {URL}
+
+== home brewed
+
+script-refactor.git
+ Provides script/refactor.
+
+== redhillonrails_core and dependants
+git://github.com/harukizaemon/redhillonrails_core.git
+git://github.com/harukizaemon/foreign_key_migrations.git
+git://github.com/harukizaemon/schema_validations.git
+
+== rails spin-offs
+git://github.com/rails/acts_as_tree.git
+git://github.com/rails/auto_complete.git
+
+== RESTful Authentication
+git://github.com/technoweenie/restful-authentication.git
