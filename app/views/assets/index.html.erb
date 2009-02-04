@@ -1,3 +1,8 @@
 <%= render :partial => "menu" %>
 
+<% form_tag "", :method => "get" do %>
+  メーカー: <%= auto_complete_combo_box_tag "developer_name", Developer.find(:all).map(&:name) %>
+  <%= submit_tag "filter" %>
+<% end %>
+
 <%= render :partial => "index", :locals => {:assets => @assets} %>

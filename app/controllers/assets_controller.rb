@@ -6,13 +6,8 @@ class AssetsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_asset_developer_name]
 
   def index
-    # TODO: refactor and generalize as find 
-    options = {:include => :developer, :order => "assets.id ASC"}
-    if user_id = params[:user_id]
-      # TODO: to avoid sub query it would good having current flag on utilizations
-      options[:conditions] = ["(SELECT user_id FROM utilizations WHERE asset_id = assets.id ORDER BY started_on DESC LIMIT 1) = ?", user_id]
-    end
-    @assets = current_group.assets.find(:all, options)
+#    raise current_group.assets.respond_to?(:proxy_owner).inspect
+    @assets = current_group.assets.params_scope(params)
   end
 
   def new
