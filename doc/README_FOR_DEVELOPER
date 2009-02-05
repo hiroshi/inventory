@@ -23,3 +23,6 @@ git://github.com/rails/auto_complete.git
 
 == RESTful Authentication
 git://github.com/technoweenie/restful-authentication.git
+
+== etc
+http://svn.codahale.com/rails_rcov

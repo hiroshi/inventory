@@ -6,7 +6,6 @@ class AssetsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_asset_developer_name]
 
   def index
-#    raise current_group.assets.respond_to?(:proxy_owner).inspect
     @assets = current_group.assets.params_scope(params)
   end
 
