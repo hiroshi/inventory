@@ -1,7 +1,12 @@
 <%= render :partial => "menu" %>
 
 <% form_tag "", :method => "get" do %>
-  メーカー: <%= auto_complete_combo_box_tag "developer_name", Developer.find(:all).map(&:name) %>
+  <%= t("activerecord.attributes.asset.developer_name") %>:
+  <%= auto_complete_combo_box_tag "developer_name", Developer.find(:all).map(&:name) %>
+
+  <%= t("activerecord.attributes.asset.user_login") %>:
+  <%= auto_complete_combo_box_tag "user_login", User.find(:all).map(&:login) %>
+
   <%= submit_tag "filter" %>
 <% end %>
 

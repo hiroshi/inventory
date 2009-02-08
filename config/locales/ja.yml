@@ -40,6 +40,7 @@ ja:
         product_name: "製品名"
         model_number: "型番"
         utilization: "利用情報"
+        user_login: "利用者"
       utilization:
         user_id: "利用者"
         description: "備考"
