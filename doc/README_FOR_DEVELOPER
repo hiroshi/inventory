@@ -1,16 +1,17 @@
-Before rading this, read README_FOR_APP first.
+Before reading farther, read README_FOR_APP first.
 
 = Maintenance
-This application depends on many plugins. 
-Those plugins other than home brewed ones, managed with 'git submodule', may be need update by re-installing.
-To update plugins:
+This application depends on many plugins.
+Home brewed ones are managed as "git submodule", as described in README_FOR_APP, and other external plugins.
+
+Home brewed plugins are:
+* script-refactor
+* passenger_deploy
+* cap_remote_rake
+
+To update other plugins, just re-install them.
 
  script/plugin install --force {URL}
-
-== home brewed
-
-script-refactor.git
- Provides script/refactor.
 
 == redhillonrails_core and dependants
 git://github.com/harukizaemon/redhillonrails_core.git

@@ -1,3 +1,9 @@
 [submodule "vendor/plugins/script-refactor"]
 	path = vendor/plugins/script-refactor
 	url = git://github.com/hiroshi/script-refactor.git
+[submodule "vendor/plugins/passenger_deploy"]
+	path = vendor/plugins/passenger_deploy
+	url = git://github.com/hiroshi/passenger_deploy.git
+[submodule "vendor/plugins/cap_remote_rake"]
+	path = vendor/plugins/cap_remote_rake
+	url = git://github.com/hiroshi/cap_remote_rake.git
