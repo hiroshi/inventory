@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/cap_remote_rake"]
 	path = vendor/plugins/cap_remote_rake
 	url = git://github.com/hiroshi/cap_remote_rake.git
+[submodule "script-refactor"]
+	path = script-refactor
+	url = /Users/hiroshi/Desktop/inventory/vendor/plugins/script-refactor/.git
