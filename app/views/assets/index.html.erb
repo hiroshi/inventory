@@ -1,13 +1,16 @@
 <%= render :partial => "menu" %>
 
 <% form_tag "", :method => "get" do %>
+<fieldset>
+  <legend><%= t("filter") %></legend>
   <%= t("activerecord.attributes.asset.developer_name") %>:
   <%= auto_complete_combo_box_tag "developer_name", Developer.find(:all).map(&:name) %>
 
   <%= t("activerecord.attributes.asset.user_login") %>:
   <%= auto_complete_combo_box_tag "user_login", User.find(:all).map(&:login) %>
 
-  <%= submit_tag "filter" %>
+  <%= submit_tag t("filter") %>
+</fieldset>
 <% end %>
 
 <%= render :partial => "index", :locals => {:assets => @assets} %>

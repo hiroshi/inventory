@@ -29,3 +29,7 @@ production:
     after "deploy:update", "#{fully_qualified_name}:replace"
   end
 end
+
+task :foo do
+  puts fetch(:rails_env, "production")
+end
