@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/cap_remote_rake"]
 	path = vendor/plugins/cap_remote_rake
 	url = git://github.com/hiroshi/cap_remote_rake.git
+[submodule "vendor/plugins/params_scope"]
+	path = vendor/plugins/params_scope
+	url = git://github.com/hiroshi/params_scope.git
